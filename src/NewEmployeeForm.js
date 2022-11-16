@@ -28,7 +28,7 @@ export const Register=()=>
 
     const regis=()=>
     {
-        alert("Welcome to zealous Tech Corp")
+        alert("Welcome to zealous Tech Corp"+JSON.stringify(process))
     }
     const reset=()=>
     {
@@ -44,6 +44,8 @@ export const Register=()=>
                         <label>EmployeeId</label>   
                         <input type="text"
                         name="empId"
+                        onChange={track}
+                        value={process.empId}
                         placeholder="Employee Id"
                         className="form-control"
                         />
@@ -52,6 +54,8 @@ export const Register=()=>
                         <label>EmployeeName</label>   
                         <input type="text"
                         name="empName"
+                        onChange={track}
+                        value={process.empName}
                         placeholder="EmployeeName"
                         className="form-control"
                         />
@@ -60,6 +64,8 @@ export const Register=()=>
                         <label>EmployeeUsername</label>   
                         <input type="text"
                         name="empUsername"
+                        onChange={track}
+                        value={process.empUsername}
                         placeholder="Employee Username"
                         className="form-control"
                         />
@@ -68,6 +74,8 @@ export const Register=()=>
                         <label>EmployeePassword</label>   
                         <input type="text"
                         name="empPassword"
+                        onChange={track}
+                        value={process.empPassword}
                         placeholder="EmployeePassword"
                         className="form-control"
                         />
@@ -75,6 +83,8 @@ export const Register=()=>
                     <div className="col-md-6 col-sm-12">
                                 <label>Employeee Designation</label>
                                 <select name="empDesignation"
+                                onChange={track}
+                                value={process.empDesignation}
                                  className="form-select me-5">
                                     <option>Select Designation</option>
                                     <option>Java Full Stack Developer</option>
@@ -88,6 +98,8 @@ export const Register=()=>
                         <label>EmployeeExp</label>   
                         <input type="text"
                         name="empExp"
+                        onChange={track}
+                        value={process.empExp}
                         placeholder="EmployeeExp"
                         className="form-control"
                         />
@@ -96,6 +108,8 @@ export const Register=()=>
                         <label>EmployeeSalary</label>   
                         <input type="text"
                         name="empSalary"
+                        value={process.empSalary}
+                        onChange={track}
                         placeholder="EmployeeSalary"
                         className="form-control"
                         />
