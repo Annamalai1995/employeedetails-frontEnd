@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css" 
+import { create } from "./MyEmployeeValues"
 export const Register=()=>
 {
     const[process,setProcess]=useState({
@@ -28,7 +29,8 @@ export const Register=()=>
 
     const regis=()=>
     {
-        alert("Welcome to zealous Tech Corp"+JSON.stringify(process))
+       create(process)
+        //alert("Welcome to zealous Tech Corp"+JSON.stringify(process))
     }
     const reset=()=>
     {
