@@ -2,11 +2,14 @@ import { useEffect, useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import { list } from "./MyEmployeeValues"
 import { Register } from "./NewEmployeeForm"
+import { Reading } from "./Read"
 
 export const Homepage=()=>
 {
     const[tmparray,setTmparray]=useState([])
     const[createView,setCreateView]=useState(false)
+    const[readView,setReadView]=useState(false)
+    const[pos,setPos]=useState(0)
 
     const result=()=>
     {
@@ -31,7 +34,21 @@ export const Homepage=()=>
             }>
                 Back
             </button>
-            </>:
+            </>
+            :
+            (readView)?
+            <>
+            <Reading who={pos}/>
+            <button className="btn btn-outline-secondary" onClick={
+                ()=>
+                {
+                    setReadView(false)
+                }
+            }>
+                Back
+            </button>
+            </>
+            :
             <>
             <button className="btn btn-outline-success" onClick={
                 ()=>
@@ -53,6 +70,7 @@ export const Homepage=()=>
                                         <th>Employee Designation</th>
                                         <th>Employee Experience</th>
                                         <th>Employee Salary</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,6 +85,18 @@ export const Homepage=()=>
                                             <td>{ele.empDesignation}</td>
                                             <td>{ele.empExp}</td>
                                             <td>{ele.empSalary}</td>     
+                                            <td>
+                                                <button className="btn btn-outline-info" onClick={
+                                                     ()=>
+                                                     {
+                                                         setReadView(true)
+                                                         setPos(ind)
+                                                     }
+                                                }>
+                                                    Read
+                                                </button>
+
+                                            </td>
                                             </tr>
 
                                         ))
@@ -75,10 +105,8 @@ export const Homepage=()=>
                             </table>
                         </div>
                     </div>
-         
             </>
             }
-            
         </div>
         </>
     );
