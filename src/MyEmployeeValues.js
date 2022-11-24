@@ -10,7 +10,7 @@ let myemployee=[
     },
     {
         "empId":2,
-        "empName":"Manoj",
+        "empName":"Praveen",
         "empUsername":"Maddy",
         "empPassword":"Maddy@4343",
         "empDesignation":"Java DEveloper",
@@ -18,7 +18,7 @@ let myemployee=[
         "empSalary":240000
     },{
         "empId":3,
-        "empName":"Manoj",
+        "empName":"Mohan",
         "empUsername":"Maddy",
         "empPassword":"Maddy@4343",
         "empDesignation":"Java DEveloper",
@@ -40,4 +40,27 @@ export const list=()=>
 export const read=(index)=>
 {
     return myemployee[index];
+}
+
+export const FetchExact=(name)=>
+{
+    const temp=myemployee.filter((element)=>
+    {
+        return element.empName===name;
+    })
+    return temp[0];
+}
+
+export const alter=(data,place)=>
+{
+ myemployee[place]=data;
+}
+
+export const remove=(index)=>
+{
+    myemployee=myemployee.filter((d,i)=>
+    {
+        return i!==index;
+    })
+    return myemployee
 }

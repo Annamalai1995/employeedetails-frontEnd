@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import { list } from "./MyEmployeeValues"
+import { FetchExact, list, remove } from "./MyEmployeeValues"
 import { Register } from "./NewEmployeeForm"
 import { Reading } from "./Read"
+import { Update } from "./Update"
 
 export const Homepage=()=>
 {
     const[tmparray,setTmparray]=useState([])
     const[createView,setCreateView]=useState(false)
     const[readView,setReadView]=useState(false)
+    const[updateView,setUpdateView]=useState(false)
     const[pos,setPos]=useState(0)
+    const[obj,setObj]=useState({})
 
     const result=()=>
     {
@@ -48,6 +51,19 @@ export const Homepage=()=>
                 Back
             </button>
             </>
+             :
+             (updateView)?
+             <>
+             <Update who={pos} mention={obj}/>
+             <button className="btn btn-outline-secondary" onClick={
+                 ()=>
+                 {
+                     setUpdateView(false)
+                 }
+             }>
+                 Back
+             </button>
+             </>
             :
             <>
             <button className="btn btn-outline-success" onClick={
@@ -94,6 +110,25 @@ export const Homepage=()=>
                                                      }
                                                 }>
                                                     Read
+                                                </button>
+                                                <button className="btn btn-outline-info" onClick={
+                                                     ()=>
+                                                     {
+                                                         setUpdateView(true)
+                                                         setPos(ind)
+                                                         const temp=FetchExact(ele.empName);
+                                                        //  setObj(temp);
+                                                     }
+                                                }>
+                                                    Update
+                                                </button>
+                                                <button className="btn btn-outline-info" onClick={
+                                                     ()=>
+                                                     {
+                                                         setTmparray(remove(ind))
+                                                     }
+                                                }>
+                                                    Delete
                                                 </button>
 
                                             </td>
