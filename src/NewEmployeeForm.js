@@ -1,13 +1,14 @@
 import { useState } from "react"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css" 
+import { join } from "./Connect"
 import { create } from "./MyEmployeeValues"
 export const Register=()=>
 {
     const[process,setProcess]=useState({
         "empId":0,
         "empName":"",
-        "empUsername":"",
-        "empPassword":"",
+        "username":"",
+        "password":"",
         "empDesignation":"",
         "empExp":"",
         "empSalary":0
@@ -27,9 +28,10 @@ export const Register=()=>
     }
 
 
-    const regis=()=>
-    {
-       create(process)
+    const regis=async()=>{
+        const yet=await join(process);
+        alert(yet.data)
+       //create(process)
         //alert("Welcome to zealous Tech Corp"+JSON.stringify(process))
     }
     const reset=()=>
@@ -65,9 +67,9 @@ export const Register=()=>
                     <div className="form group">
                         <label>EmployeeUsername</label>   
                         <input type="text"
-                        name="empUsername"
+                        name="username"
                         onChange={track}
-                        value={process.empUsername}
+                        value={process.username}
                         placeholder="Employee Username"
                         className="form-control"
                         />
@@ -75,9 +77,9 @@ export const Register=()=>
                     <div className="form group">
                         <label>EmployeePassword</label>   
                         <input type="text"
-                        name="empPassword"
+                        name="password"
                         onChange={track}
-                        value={process.empPassword}
+                        value={process.password}
                         placeholder="EmployeePassword"
                         className="form-control"
                         />
