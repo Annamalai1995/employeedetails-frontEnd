@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { loadEmp, loadSlips } from "./Connect"
 
-export const ViewSlips=()=>{
+export const ViewSlips=(rishi)=>{
 
     //const[emp,setEmp]=useState({})
     const[allslips,setAllslips]=useState([])
@@ -22,7 +22,12 @@ export const ViewSlips=()=>{
 
     useEffect(()=>{
         //await findEmp()
-        loadingRecords()
+        if(rishi.custom){
+            setAllslips(rishi.custom)
+        }
+        else{
+            loadingRecords()
+        }
     },[])
 
     return(<>

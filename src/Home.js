@@ -17,6 +17,7 @@ export const Homepage=()=>{
                         <Nav className="ms-auto">   
                             <Nav.Link href="/create">New</Nav.Link>
                             <Nav.Link href="/view">View</Nav.Link>
+                            <Nav.Link href="/short">Shortlist</Nav.Link>
                             {/* <Nav.Link href="/hi">Home</Nav.Link>
                             <Nav.Link href="/hai">New</Nav.Link>
                             <Nav.Link href="/hey">New</Nav.Link>
