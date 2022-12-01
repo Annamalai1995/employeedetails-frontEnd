@@ -5,6 +5,16 @@ const link="http://localhost:8080";
 const frame="razak:mohamed"
 const token=btoa(frame)
 
+export const onFilter=async(obj)=>{
+    const t = await axios.get(`${link}/maddy/datem/${sessionStorage.getItem('employee')}/${obj.start}/${obj.end}`,{
+        headers:{
+            "Authorization":`Basic ${token}`
+        }
+    })
+    alert(t.data)
+    return t
+}
+
 export const addSlip=async(slip)=>{
     //alert("before to back end "+JSON.stringify(slip))
     const t = await axios.post(`${link}/maddy/createpayslip/${sessionStorage.getItem('employee')}`,slip,{
