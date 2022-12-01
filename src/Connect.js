@@ -6,33 +6,44 @@ const frame="razak:mohamed"
 const token=btoa(frame)
 
 export const addSlip=async(slip)=>{
-    alert("before to back end "+JSON.stringify(slip))
-    const t = await axios.post(`${link}/maddy/createpayslip`,{
-        headers:{
-            "Authorization":`Basic ${token}`
-        }
-    },slip)
-    return t
-}
-
-export const loadSlips=async(emp)=>{
-    alert("received employee "+JSON.stringify(emp))
-    const t = await axios.get(`${link}/maddy/fetch`,{
-        headers:{
-            "Authorization":`Basic ${token}`
-        }
-    }, emp)
-    return t;
-}
-
-export const loadEmp=async()=>{
-    const t = await axios.get(`${link}/maddy/razak`,{
+    //alert("before to back end "+JSON.stringify(slip))
+    const t = await axios.post(`${link}/maddy/createpayslip/${sessionStorage.getItem('employee')}`,slip,{
         headers:{
             "Authorization":`Basic ${token}`
         }
     })
-    alert(t.data.username)
     return t
+}
+
+export const loadSlips=async()=>{
+    //alert("received employee "+sessionStorage.getItem("employee"))
+    //const y=JSON.parse(sessionStorage.getItem("employee"))
+    //console.log(y)
+    const t = await axios.get(`${link}/maddy/fetch/${sessionStorage.getItem('employee')}`,{
+        headers:{
+            "Authorization":`Basic ${token}`
+        }
+    })
+    //alert(JSON.stringify(t.data))
+    return t;
+}
+
+export const loadEmp=async()=>{
+    try{
+        const t = await axios.get(`${link}/maddy/razak`,{
+            headers:{
+                "Authorization":`Basic ${token}`
+            }
+        })
+        if(t.data)
+        {
+            sessionStorage.setItem("employee","razak")
+            return
+        }
+    }
+    catch(err){
+        alert("invalid")
+    }
 }
 
 export const join=async(object)=>

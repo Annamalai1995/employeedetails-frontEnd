@@ -3,23 +3,26 @@ import { loadEmp, loadSlips } from "./Connect"
 
 export const ViewSlips=()=>{
 
-    const[emp,setEmp]=useState({})
+    //const[emp,setEmp]=useState({})
     const[allslips,setAllslips]=useState([])
 
-    const findEmp=async()=>{
-        const h = await loadEmp()
-        setEmp(h.data)
-        alert(JSON.stringify(emp))
-    }
+    // const findEmp=async()=>{
+    //     const h = await loadEmp()
+    //     //alert("@ findEmp "+JSON.stringify(h.data))
+    //     setEmp(h.data)
+    //     alert("@ findEmp "+JSON.stringify(emp))
+    // }
 
     const loadingRecords=async()=>{
-        const t = await loadSlips(emp)
+        //alert(JSON.stringify(emp))
+        const t = await loadSlips()
         setAllslips(t.data)
-        alert(allslips.length)
+        //alert(allslips.length)
     }
 
     useEffect(()=>{
-        findEmp()     
+        //await findEmp()
+        loadingRecords()
     },[])
 
     return(<>
@@ -27,10 +30,10 @@ export const ViewSlips=()=>{
             <a href="/newslip" className="btn btn-outline-success">
                 <i class="bi bi-newspaper"></i> New Payslip
             </a>
-            <div className="row justify-content-center">
-                <div className="col-lg-8 col-md-10 col-sm-12">
+            <div className="row justify-content-center mt-4">
+                <div className="col-lg-8 col-md-10 col-sm-12 shadow">
                     <div className="table-responsive">
-                        <table className="table table-bordered table-striped text-nowrap p-3 shadow rounded-5" cellSpacing="4px" cellPadding="4px">
+                        <table className="table table-bordered table-striped text-nowrap p-3" cellSpacing="4px" cellPadding="4px">
                             <thead>
                                 <tr>
                                     <th>Payslip id</th>

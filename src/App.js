@@ -6,9 +6,21 @@ import { ViewSlips } from "./Slips";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { NewPaySlip } from "./NewSlip";
+import { useEffect } from "react";
+import { loadEmp } from "./Connect";
 
 
 function App() {
+
+  const findEmp=async()=>{
+    sessionStorage.removeItem("employee")
+    const h = await loadEmp()
+    //alert("@ findEmp "+sessionStorage.getItem("employee"))
+  }
+
+  // useEffect(()=>{
+  //   findEmp()
+  // },[])
   return (
     <>
     <BrowserRouter>

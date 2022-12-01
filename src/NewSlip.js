@@ -4,30 +4,29 @@ import { addSlip, loadEmp } from "./Connect"
 
 export const NewPaySlip=()=>{
     const nav=useNavigate()
-    const[emp,setEmp]=useState({})
+    //const[emp,setEmp]=useState({})
     const[slip,setSlip]=useState({
-        "empDetails":{},
+        //"empDetails":{},
         "date":"",
         "payslipAllowance":0.0,
         "paysilpTds":0.0,
     })
 
-    const findEmp=async()=>{
-        const h = await loadEmp()
-        setEmp(h.data)
-    }
+    // const findEmp=async()=>{
+    //     const h = await loadEmp()
+    //     setEmp(h.data)
+    // }
 
-    useEffect(()=>{
-        findEmp()
-    },[])
+    // useEffect(()=>{
+    //     findEmp()
+    // },[])
 
     const hello=(eve)=>{
         const{name,value}=eve.target
         setSlip((old)=>{
             return{
                 ...old,
-                [name]:value,
-                empDetails:emp
+                [name]:value
             }
         })
     }
