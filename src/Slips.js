@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { loadEmp, loadSlips } from "./Connect"
+import { loadEmp, loadSlips, onHike } from "./Connect"
 
 export const ViewSlips=(rishi)=>{
 
@@ -32,9 +32,17 @@ export const ViewSlips=(rishi)=>{
 
     return(<>
         <div className="container">
-            <a href="/newslip" className="btn btn-outline-success">
-                <i class="bi bi-newspaper"></i> New Payslip
-            </a>
+            <div className="row justify-content-evenly mt-3">
+                <a href="/newslip" className="btn btn-outline-success col-2">
+                    <i class="bi bi-newspaper"></i> New Payslip
+                </a>
+                <button className="btn btn-outline-secondary col-2" onClick={async()=>{
+                    const s = await onHike()
+                    alert(s.data)
+                }}>
+                    <i class="bi bi-currency-rupee"></i> Request Hike
+                </button>
+            </div>
             <div className="row justify-content-center mt-4">
                 <div className="col-lg-8 col-md-10 col-sm-12 shadow">
                     <div className="table-responsive">
@@ -43,6 +51,10 @@ export const ViewSlips=(rishi)=>{
                                 <tr>
                                     <th>Payslip id</th>
                                     <th>Payslip date</th>
+                                    <th>Basic Pay</th>
+                                    <th>Allowances</th>
+                                    <th>TDS</th>
+                                    <th>Take home</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +62,10 @@ export const ViewSlips=(rishi)=>{
                                     <tr>
                                         <td>{v.payslipId}</td>
                                         <td>{v.date}</td>
+                                        <td>{v.payslipBasicSalary}</td>
+                                        <td>{v.payslipAllowance}</td>
+                                        <td>{v.paysilpTds}</td>
+                                        <td>{v.payslipTakeHome}</td>
                                     </tr>
                                 ))}
                             </tbody>
