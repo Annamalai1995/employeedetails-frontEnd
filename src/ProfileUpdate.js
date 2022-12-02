@@ -1,11 +1,7 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css" 
-import { join } from "./Connect"
-import { create } from "./MyEmployeeValues"
-export const Register=()=>
-{
-    //const nav=useNavigate()
+import { useEffect, useState } from "react"
+import { getDetails, loadEmp, onUpdate } from "./Connect"
+
+export const Profile=()=>{
     const[process,setProcess]=useState({
         "empId":0,
         "empName":"",
@@ -15,6 +11,17 @@ export const Register=()=>
         "empExp":"",
         "empSalary":0
     })
+
+    const callLoad=async()=>{
+        const t = await getDetails()
+        setProcess(t.data)
+    }
+
+    useEffect(()=>{
+        callLoad()
+        alert(JSON.stringify(process))
+    },[])
+
     const track=(data)=>
     {
         const{name,value}=data.target
@@ -31,9 +38,8 @@ export const Register=()=>
 
 
     const regis=async()=>{
-        const yet=await join(process);
+        const yet=await onUpdate(process);
         alert(yet.data)
-        //nav("/")
         window.location.assign("/")
        //create(process)
         //alert("Welcome to zealous Tech Corp"+JSON.stringify(process))
@@ -45,7 +51,7 @@ export const Register=()=>
     return(
         <>
         <div className="container-fluid mt-2 bg-secondary">
-            <h1 className="text-info text-uppercase text-center font-monospace">Employee registration form</h1>
+            <h1 className="text-info text-uppercase text-center font-monospace">Employee Update</h1>
             <div className="row justify-content-center">
                 <div className="col-lg-8 col-md-0 col-sm-12 shadow-lg p-3 bg-info">
                 <div className="form group">
@@ -123,7 +129,7 @@ export const Register=()=>
                         />
                     </div>
                     <div className="row justify-content-around mt-4">
-                        <button className="btn btn-outline-success col-3 ms-3" onClick={regis} >Register</button>
+                        <button className="btn btn-outline-success col-3 ms-3" onClick={regis} >Update</button>
                         <button className="btn btn-outline-danger col-3 me-3" onClick={reset} type="reset" value="Reset" >Reset</button>
                     </div>
                 </div>
